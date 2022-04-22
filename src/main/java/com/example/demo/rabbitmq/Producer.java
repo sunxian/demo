@@ -15,7 +15,7 @@ public class Producer {
     RabbitTemplate rabbitTemplate;
 
     public void sendMessgae(String msg){
-        rabbitTemplate.convertAndSend("amq.topic","sun",msg);
+        rabbitTemplate.convertAndSend("sun.topic","sunxian",msg);
     }
 
 }
