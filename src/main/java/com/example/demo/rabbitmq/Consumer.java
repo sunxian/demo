@@ -13,6 +13,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentSkipListMap;
+
 /**
  * @author sunxian
  * @Date 2022/4/20 17:01
@@ -30,6 +33,8 @@ public class Consumer {
             key = "sunxian"),ackMode ="MANUAL" )
     public void onListenQueue(Message message, Channel channel) throws Exception {
         log.info("queue1 {} receivedmessage: {}", Q1, message);
-         channel.basicAck(message.getMessageProperties().getDeliveryTag(),true);
+channel.basicReject(message.getMessageProperties().getDeliveryTag(),false);
+         //channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+       // ConcurrentLinkedQueue queue=new ConcurrentLinkedQueue();
     }
 }
