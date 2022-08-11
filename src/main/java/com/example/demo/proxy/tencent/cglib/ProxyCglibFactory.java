@@ -38,32 +38,13 @@ public class ProxyCglibFactory implements MethodInterceptor {
         return en.create();
     }
 
-
-    /**
-     *   代理方法 CGLIB$getVideoInfo$0$Proxy调用CGLIB$getVideoInfo$0
-     *   final String CGLIB$getVideoInfo$0() {
-     *         return super.getVideoInfo();
-     *     }
-     *
-     *     public final String getVideoInfo() {
-     *         MethodInterceptor var10000 = this.CGLIB$CALLBACK_0;
-     *         if (var10000 == null) {
-     *             CGLIB$BIND_CALLBACKS(this);
-     *             var10000 = this.CGLIB$CALLBACK_0;
-     *         }
-     *
-     *         return var10000 != null ? (String)var10000.intercept(this, CGLIB$getVideoInfo$0$Method, CGLIB$emptyArgs, CGLIB$getVideoInfo$0$Proxy) : super.getVideoInfo();
-     *     }
-     */
-    //target是代理后的子类  ，method是调用方法 ，objects是方法入参 ， proxy是MethodProxy代理对象
     //f1 被代理类 f2 代理类
     //而f1则是对应ThirdPartyTVCglibClass$$FastClassByCGLIB$$6700f748代理类，f2则对应ThirdPartyTVCglibClass$$EnhancerByCGLIB$$6682532b$$FastClassByCGLIB$$437adfc6代理类
-
     /**
      *
      * @paramr= target 代理类对象实例
-     * @param 被代理的原始方法
-     * @param objects
+     * @param   method 被代理的原始方法
+     * @param objects 方法入参
      * @param methodProxy FastClass机制就是对一个类的方法建立索引，调用方法时根据方法的签名来计算索引，通过索引来直接调用相应的方法
      * @return
      * @throws Throwable
