@@ -1,13 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.anotation.RequestLog;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -19,11 +17,10 @@ import java.lang.reflect.Method;
 //@Aspect
 @Slf4j
 @Component
-public class MyAspect {
+public class Aspect2 {
 
-
-    //@Pointcut("execution(* com.example.demo.controller.TestController.healthCheck(..))") // 切入点表达式
-    @Pointcut("@annotation(com.example.demo.anotation.RequestLog)")
+    // target 限制连接点匹配目标对象为指定类型的类
+   @Pointcut("args(com.example.demo.entity.Animal,..)") // 切入点表达式
     private void  writeLog() {}// 方法签名
 
 
@@ -32,13 +29,8 @@ public class MyAspect {
 
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
-        // 通过 AnnotationUtils.findAnnotation 获取 RateLimiter 注解
-        RequestLog requestLog = AnnotationUtils.findAnnotation(method, RequestLog.class);
-        int value = requestLog.value();
-//        if(value==1){
-//            throw new RuntimeException("!!!!");
-//        }
-        log.info("访问接口 {}",method.getName());
+
+        log.info("访问接口33333 {}",method.getName());
         return point.proceed();
     }
 

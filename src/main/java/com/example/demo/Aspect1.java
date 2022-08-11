@@ -19,11 +19,10 @@ import java.lang.reflect.Method;
 //@Aspect
 @Slf4j
 @Component
-public class MyAspect {
+public class Aspect1 {
 
-
-    //@Pointcut("execution(* com.example.demo.controller.TestController.healthCheck(..))") // 切入点表达式
-    @Pointcut("@annotation(com.example.demo.anotation.RequestLog)")
+    // @within() 限制连接点匹配指定注解所标注的类型
+    @Pointcut("@within(com.example.demo.anotation.Log)") // 切入点表达式
     private void  writeLog() {}// 方法签名
 
 
@@ -32,13 +31,8 @@ public class MyAspect {
 
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
-        // 通过 AnnotationUtils.findAnnotation 获取 RateLimiter 注解
-        RequestLog requestLog = AnnotationUtils.findAnnotation(method, RequestLog.class);
-        int value = requestLog.value();
-//        if(value==1){
-//            throw new RuntimeException("!!!!");
-//        }
-        log.info("访问接口 {}",method.getName());
+
+        log.info("访问接口2222 {}",method.getName());
         return point.proceed();
     }
 
