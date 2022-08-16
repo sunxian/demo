@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author sunxian
  * @version 2022-08-05 9:43
- * 中介
+ * 房产中介
  */
 @Slf4j
 public class Agency implements Rent {

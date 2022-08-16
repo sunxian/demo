@@ -1,6 +1,5 @@
 package com.example.demo.proxy.tencent.cglib.FastClass;
 
-import com.example.demo.proxy.tencent.cglib.ThirdPartyTVCglibClass;
 import org.springframework.cglib.core.Signature;
 import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.reflect.FastClass;

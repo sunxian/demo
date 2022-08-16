@@ -16,24 +16,9 @@ import java.lang.reflect.Proxy;
  */
 public class DynamicTest {
 
-    //被代理对象
-    //static ThirdPartyTVClass target=new ThirdPartyTVClass();
-
-    //被代理对象
-    static LandLord landLord=new LandLord();
-    //代理类
-    //static ThirdPartyTVLib proxyInstance = (ThirdPartyTVLib)new TVProxyFactory(target).getProxyInstance();
-
     public static void main(String[] args) {
 
-        // Proxy.isProxyClass(target.getClass());
-
-//        proxyInstance.getVideoInfo();
-//        proxyInstance.getVideoInfo();
-//        proxyInstance.getVideoInfo();
-//        proxyInstance.getVideoInfo();
     }
-
 
     /**
      * loader，指定代理对象的类加载器；
@@ -54,12 +39,6 @@ public class DynamicTest {
     }
 
     @Test
-    public void testJDKDynamicProxy1(){
-        //代理对象
-        Rent proxyInstance = (Rent) Proxy.newProxyInstance(LandLord.class.getClassLoader(), LandLord.class.getInterfaces(),new RentInvocationHandler());
-        proxyInstance.rent();
-    }
-    @Test
     public void testJDKDynamicProxy2(){
         //代理对象
         ProxyO proxyO = new ProxyO(ThirdPartyTVClass.class.getClassLoader(), ThirdPartyTVClass.class.getInterfaces(), new TVInvocationHandler());
@@ -69,5 +48,14 @@ public class DynamicTest {
         proxyO.getVideoInfo();
         proxyO.getVideoInfo();
     }
+
+
+    @Test
+    public void testJDKDynamicProxy1(){
+        //代理对象
+        Rent proxyInstance = (Rent) Proxy.newProxyInstance(LandLord.class.getClassLoader(), LandLord.class.getInterfaces(),new RentInvocationHandler());
+        proxyInstance.rent();
+    }
+
 
 }

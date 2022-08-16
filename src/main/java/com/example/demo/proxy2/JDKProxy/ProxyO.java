@@ -1,6 +1,7 @@
-package com.example.demo.proxy.tencent.jdk;
+package com.example.demo.proxy2.JDKProxy;
 
 import com.example.demo.proxy.tencent.ThirdPartyTVLib;
+import com.example.demo.proxy2.staticProxy.Rent;
 
 import java.lang.reflect.InvocationHandler;
 
@@ -8,7 +9,7 @@ import java.lang.reflect.InvocationHandler;
  * @author sunxian
  * @version 2022-08-05 14:17
  */
-public class ProxyO implements ThirdPartyTVLib {
+public class ProxyO implements Rent {
 
     private ClassLoader loader;
     private Class<?>[] interfaces;
@@ -24,13 +25,16 @@ public class ProxyO implements ThirdPartyTVLib {
 
 
     @Override
-    public String getVideoInfo() {
-        try {
-            return (String) h.invoke(this, ThirdPartyTVLib.class.getMethod("getVideoInfo"), null);
+    public void rent() {
 
+        try {
+            h.invoke(this, Rent.class.getMethod("rent"), null);
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        return "ssss";
+
+
     }
+
+
 }

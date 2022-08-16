@@ -21,13 +21,15 @@ public class CachedTVClass implements ThirdPartyTVLib {
     @Override
     public String getVideoInfo() {
 
-
+        //延迟初始化
         if (thirdPartyTVClass == null) {
             thirdPartyTVClass = new ThirdPartyTVClass();
         }
         if (videoCache == null) {
+            //调用原对象
             videoCache = thirdPartyTVClass.getVideoInfo();
         }
+        //附加操作
         log.info("观看视频 {}", videoCache);
         return videoCache;
 

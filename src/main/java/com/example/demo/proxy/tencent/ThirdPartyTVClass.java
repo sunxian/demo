@@ -10,6 +10,7 @@ import java.io.IOException;
 /**
  * @author sunxian
  * @version 2022-06-23 15:59
+ * 远程视频服务
  */
 @Slf4j
 public  class ThirdPartyTVClass implements ThirdPartyTVLib{
