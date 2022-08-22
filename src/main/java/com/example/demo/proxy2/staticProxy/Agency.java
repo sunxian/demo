@@ -16,7 +16,8 @@ public class Agency implements Rent {
     public void rent() {
 
         log.info("带看");
-        this.landLord=new LandLord();
+        this.landLord = new LandLord();
+        //出租
         landLord.rent();
         log.info("收费");
     }

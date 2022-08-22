@@ -21,6 +21,7 @@ public class RentMethodInterceptor implements MethodInterceptor {
 
         log.info("带看");
         Object invoke = methodProxy.invokeSuper(target, args);
+        //Object invoke = methodProxy.invoke(target, args);
         log.info("收费");
         return  invoke;
     }
