@@ -3,9 +3,12 @@ package com.example.demo.proxy2.JDKProxy;
 import com.example.demo.proxy.tencent.ThirdPartyTVClass;
 import com.example.demo.proxy2.staticProxy.LandLord;
 import com.example.demo.proxy2.staticProxy.Rent;
+import com.example.demo.util.IPUtils;
 import org.junit.Test;
 
 import java.lang.reflect.Proxy;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @author sunxian
@@ -31,6 +34,8 @@ public class JDKProxyTest {
         com.example.demo.proxy2.JDKProxy.ProxyO proxyO = new ProxyO(ThirdPartyTVClass.class.getClassLoader(), ThirdPartyTVClass.class.getInterfaces(), new RentInvocationHandler());
         proxyO.rent();
     }
+
+
 
 
 }

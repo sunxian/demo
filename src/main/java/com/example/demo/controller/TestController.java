@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.Security;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author sunxian
@@ -98,6 +96,62 @@ public class TestController {
             log.error(e.getMessage());
         }
         return "success";
+    };
+
+
+    @RequestMapping("testOOM")
+    public  String  testOOM(Long i){
+       if (i!=null){
+           for (int j = 0; j <i ; j++) {
+               User user = new User();
+           }
+       }
+
+//        List<byte[]> list = new ArrayList<>();
+//
+//        while (true) {
+//            list.add(new byte[1024 * 1024]); // 每次增加一个1M大小的数组对象
+//        }
+return "ss";
+    };
+
+    @RequestMapping("gc")
+    public  void   testGc(){
+         final int _1MB = 1024 * 1024;
+
+            System.out.println("0.---");
+
+            List caches = new ArrayList();
+
+            for (int i = 0; i < 11; i++){
+                caches.add(new byte[3 * _1MB]);
+            }
+
+            System.out.println("1.---");
+
+            caches.add(new byte[3 * _1MB]);
+
+            caches.remove(0);
+            caches.add(new byte[3 * _1MB]);
+
+
+            for (int i = 0; i < 8; i++) {
+                caches.remove(0);
+            }
+            caches.add(new byte[3 * _1MB]);
+
+            System.out.println("2.---");
+
+            for (int i = 0; i < 7; i++){
+                caches.add(new byte[3 * _1MB]);
+            }
+
+    };
+
+
+    @RequestMapping("gc1")
+    public  void   testGc1(){
+       System.gc();
     };
 
     //单笔经办

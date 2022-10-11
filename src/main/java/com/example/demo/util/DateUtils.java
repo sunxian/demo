@@ -33,6 +33,20 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+
+    /**
+     * 获取指定日期的日
+     *
+     * @param date
+     * @return
+     */
+    public static int getDay(Date date) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(date);
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
+
     /**
      * 指定日期加几天.
      * 

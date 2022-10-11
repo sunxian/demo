@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 
 import java.math.BigDecimal;
 import java.net.URLEncoder;
@@ -190,6 +191,7 @@ public class cmbTtest1 {
         //item.addProperty("accnbr", "755915704510123");
         body.addProperty("accnbr", accountNum);
         body.addProperty("trsdat", "20220802");
+        body.addProperty("trsseq", "0");
         // array.add(item);
         // body.add("ntdmaaddx", array);
         req.add("head", head);
@@ -218,7 +220,7 @@ public class cmbTtest1 {
         JsonArray array = new JsonArray();
         JsonObject item = new JsonObject();
         //body.addProperty("bbknbr", "69");
-        item.addProperty("bthNbr", "22072916560001");
+        item.addProperty("bthNbr", "22082211360005");
          array.add(item);
          body.add("bb1qrybdy1", array);
         req.add("head", head);
@@ -389,13 +391,14 @@ public class cmbTtest1 {
 
 
         // 请求发送接收
+        JsonObject result = null;
         try {
-            JsonObject result=doProcess(getRequestObjectForTradeDetail("755915704510123"),"DCTRSINF");
+            result=doProcess(getRequestObjectForTradeDetail("755915704510123"),"DCTRSINF");
         } catch (Exception e) {
             log.error(e.getMessage(),e);
             log.error("sssssd");
         }
-        // processTradeDetail(result,"111111");
+       processTradeDetail(result,"111111");
     }
 
     @Test
@@ -530,6 +533,12 @@ public class cmbTtest1 {
         if (resultcode.equals("SUC0000")){
             JsonObject body = response.get("body").getAsJsonObject();
             JsonArray ntqactrsz2 = body.getAsJsonArray("ntqactrsz2");
+            JsonArray ntqactrsz1 = body.getAsJsonArray("ntrbptrsz1");
+            JsonElement jsonElement = ntqactrsz1.get(0);
+            JsonElement jsonElement1 = jsonElement.getAsJsonObject().get("cotflg");
+            String trsseq = jsonElement.getAsJsonObject().get("trsseq").getAsString();
+            log.info(trsseq);
+
             Iterator<JsonElement> iterator = ntqactrsz2.iterator();
             while (iterator.hasNext()){
                 JsonObject jsonObject = (JsonObject)iterator.next();
